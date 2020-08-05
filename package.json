@@ -1,0 +1,29 @@
+{
+  "name": "@ayamejs/usage",
+  "version": "0.1.0",
+  "description": "Usage tag parser for Ayame framework",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "scripts": {
+    "test": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayamejs/ayame.git"
+  },
+  "keywords": [
+    "ayame",
+    "framework",
+    "discord",
+    "bot",
+    "usage",
+    "tag",
+    "parser"
+  ],
+  "author": "PoLLeN <pollen@itsladybug.ml> (https://itsladybug.ml/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ayamejs/ayame/issues"
+  },
+  "homepage": "https://github.com/ayamejs/ayame#readme"
+}

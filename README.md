@@ -1,0 +1,47 @@
+# `@ayamejs/usage`
+Parses usage strings like `<target:user> [reason:string...]` into a JavaScript object like `[{ name: "target", type: "user", required: true, rest: false, options: null, literal: false }, { name: "reason", type: "string", required: false, rest: true, options: null, literal: false }]`
+
+Used internally by the [Ayame Framework](https://github.com/ayamejs/ayame) but anyone can use it.
+
+Join our [Discord Server](https://discord.gg/tfwTZWX) for support and more.
+
+## Install
+```sh
+$ npm install @ayamejs/usage
+```
+If you are using Ayame then ignore this, it's already a dependency of Ayame and is used internally, this guide is for interested users who would like to use them in their own custom bots.
+
+TypeScript typings included.
+
+## Usage
+```js
+const usage = require("@ayamejs/usage");
+
+// Parse a usage string.
+usage.parse("<target:user> [reason:string...]");
+// =>
+// [
+//   { name: 'target', type: 'user', required: true, rest: false, options: null, literal: false },
+//   { name: 'reason', type: 'string', required: false, rest: true, options: null, literal: false }
+// ]
+
+// Clean the types to make it more user friendly on discord.
+// Use this e.g in your help command.
+usage.format("<target:user> [reason:string...]");
+// => <target> [reason...]
+```
+Explanations on each returned property:
+- **name** This is the tag name, a name is always available.
+- **type** This is the type followed after the name, always available.
+- **required** If true the tag was constructed with `<>` meaning it is required.
+- **rest** if true the tag was constructed with `...` meaning to parse the rest of the input. Only on the last tag.
+- **options** Array of options if the tag used the `|` seperator. Available on type `union` it would signify the user meant to try parsing as different types (`<target:member|user>` try parsing as member if failed try user)
+- **literal** If true it means the union types are rather literal options (`<action::add|remove|list>` action can be either `add`, `remove` or `list`) This is true if the user used `::` double colons to seperate the union.
+
+**Notes:**
+- To avoid repeated patterns like `<user:user>` you can use `<@user>` this is supported internally so the output does not change so you don't have to worry about it. You will still get an object with `{ name: "user", type: "user" }`
+- The same is true for members instead of `<member:member>` you can use `<@@member>` notice the double `@`
+- This is just a tag parser, to turn the tag into some object you can get the information out of, no actual argument parsing is done, that is up to you to build some parser that makes use of the tags.
+
+## License
+`@ayamejs/usage` is released under the terms of [MIT LICENSE](LICENSE)
