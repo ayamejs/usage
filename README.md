@@ -29,6 +29,10 @@ usage.parse("<target:user> [reason:string...]");
 // Use this e.g in your help command.
 usage.format("<target:user> [reason:string...]");
 // => <target> [reason...]
+
+// Or if you have a seperator.
+usage.format("<username:string> <repository:string>", "/");
+// => <username> / <repository>
 ```
 Explanations on each returned property:
 - **name** This is the tag name, a name is always available.
@@ -38,10 +42,28 @@ Explanations on each returned property:
 - **options** Array of options if the tag used the `|` seperator. Available on type `union` it would signify the user meant to try parsing as different types (`<target:member|user>` try parsing as member if failed try user)
 - **literal** If true it means the union types are rather literal options (`<action::add|remove|list>` action can be either `add`, `remove` or `list`) This is true if the user used `::` double colons to seperate the union.
 
-**Notes:**
-- To avoid repeated patterns like `<user:user>` you can use `<@user>` this is supported internally so the output does not change so you don't have to worry about it. You will still get an object with `{ name: "user", type: "user" }`
-- The same is true for members instead of `<member:member>` you can use `<@@member>` notice the double `@`
-- This is just a tag parser, to turn the tag into some object you can get the information out of, no actual argument parsing is done, that is up to you to build some parser that makes use of the tags.
+## Prefixes
+Instead of repeating the same name for the type we have some aliases.
+
+e.g instead of `<user:user>` you can use `<@user>`
+
+**Aliases:**
+- `@` user
+- `@@` member
+- `#` channel
+
+The output format does not change, you can still treat it as if the full `<user:user>` was passed.
+
+More aliases will be added if needed.
+
+## Changelog
+
+#### v0.2.0
+- Added support for `#` prefix tags for channels.
+- Add seperator option for `usage.format` to make it clear to the user about the seperator.
+
+#### v0.1.0
+- Initial release.
 
 ## License
 `@ayamejs/usage` is released under the terms of [MIT LICENSE](LICENSE)

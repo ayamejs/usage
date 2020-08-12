@@ -10,7 +10,7 @@ declare module "@ayamejs/usage" {
   }
 
   export function parse(input: string): Tag;
-  export function format(input: string): string;
+  export function format(input: string, sep?: string): string;
 
   const version: string;
   export { version };

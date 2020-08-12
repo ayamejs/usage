@@ -43,6 +43,9 @@ function parse(input) {
       } else if(current.name.startsWith("@") && current.type === "") {
         current.name = current.name.slice(1);
         current.type = "user";
+      } else if(current.name.startsWith("#") && current.type === "") {
+        current.name = current.name.slice(1);
+        current.type = "channel";
       } else if(current.type === "") {
         current.type = "literal";
       }
@@ -68,6 +71,9 @@ function parse(input) {
       } else if(current.name.startsWith("@") && current.type === "") {
         current.name = current.name.slice(1);
         current.type = "user";
+      } else if(current.name.startsWith("#") && current.type === "") {
+        current.name = current.name.slice(1);
+        current.type = "channel";
       } else if(current.type === "") {
         current.type = "literal";
       }
@@ -137,7 +143,7 @@ function parse(input) {
  * @param {String|Object} input - A usage string or an already parsed object of tags.
  * @returns {String}
  */
-function format(input) {
+function format(input, sep = "") {
   // honestly, idk if this is the cleanest approach but I guess it's fine for now.
   if(typeof input === "string") input = parse(input);
 
@@ -145,7 +151,7 @@ function format(input) {
     return (tag.required ? "<" : "[") + (!tag.literal ? tag.name : "") +
       (tag.literal ? tag.options.join("|") : "") + (tag.rest ? "..." : "") +
       (tag.required ? ">" : "]");
-  }).join(" ");
+  }).join(sep + " ");
 }
 
 module.exports = { parse, format, version };
