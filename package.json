@@ -1,5 +1,5 @@
 {
-  "name": "@ayamejs/usage",
+  "name": "@ayame/usage",
   "version": "0.2.0",
   "description": "Usage tag parser for Ayame framework",
   "main": "index.js",
