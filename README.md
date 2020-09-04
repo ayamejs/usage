@@ -1,4 +1,4 @@
-# `@ayamejs/usage`
+# `@ayame/usage`
 Parses usage strings like `<target:user> [reason:string...]` into a JavaScript object like `[{ name: "target", type: "user", required: true, rest: false, options: null, literal: false }, { name: "reason", type: "string", required: false, rest: true, options: null, literal: false }]`
 
 Used internally by the [Ayame Framework](https://github.com/ayamejs/ayame) but anyone can use it.
@@ -7,7 +7,7 @@ Join our [Discord Server](https://discord.gg/tfwTZWX) for support and more.
 
 ## Install
 ```sh
-$ npm install @ayamejs/usage
+$ npm install @ayame/usage
 ```
 If you are using Ayame then ignore this, it's already a dependency of Ayame and is used internally, this guide is for interested users who would like to use them in their own custom bots.
 
@@ -15,7 +15,7 @@ TypeScript typings included.
 
 ## Usage
 ```js
-const usage = require("@ayamejs/usage");
+const usage = require("@ayame/usage");
 
 // Parse a usage string.
 usage.parse("<target:user> [reason:string...]");
